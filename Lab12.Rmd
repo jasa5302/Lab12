@@ -6,12 +6,14 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
 
 ```{r}
 library(tidyverse)
 library(gapminder)
+
+gap <- gapminder
 
 #Two-Sample Permutation Test
 
@@ -50,6 +52,12 @@ perm_mean <- function(perms = 1000, values, n1)
 perm_mean(1000, gap$lifeExp, 200)
 
 
+
+```
+###Is there a correlation between GDP per capita and Life Expectancy
+
+
+```{r}
 #Correlation Permutation Test
 
 perm_cor <- function(perms = 1000, x, y)
@@ -77,6 +85,6 @@ perm_cor <- function(perms = 1000, x, y)
   return(outputCor)
 }
 
-perm_cor(1000, gap$gdpPercap, gap$lifeExp)
+plot(perm_cor(1000, gap$gdpPercap, gap$lifeExp), type = "h", ylab = "correlation")
 ```
 
