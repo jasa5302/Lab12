@@ -13,11 +13,13 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(gapminder)
 
+#Two-Sample Permutation Test
+
 perm_mean <- function(perms = 1000, values, n1)
 {
   # Create vector of zeroes of length "perms" to store
   # permuted mean differnces
-  output <- vector("double", perms)
+  outputMean <- vector("double", perms)
   
   # Loop throught number of permutations
   for (i in c(1:perms))
@@ -39,13 +41,42 @@ perm_mean <- function(perms = 1000, values, n1)
     
     meanDifference <- firstMean - secondMean
     
-    output[i] <- meanDifference
+    outputMean[i] <- meanDifference
   }
   # Return new updated vector, created in step 1
   
-  return(output)
+  return(outputMean)
 }
 perm_mean(1000, gap$lifeExp, 200)
 
+
+#Correlation Permutation Test
+
+perm_cor <- function(perms = 1000, x, y)
+{
+  # Create vector of zeroes of length "perms" to store
+  # permuted mean differnces
+  
+  outputCor <- vector("double", perms)
+  
+  # Loop throught number of permutations
+  for (i in c(1:perms))
+  {
+    # Step 2:
+    # Randomly mix up the values in the vector "y"
+    
+    vector1 <- sample(y)
+
+    # Compute the correlation between x and the randomly mixed
+    # up y-vector. Store this value in the vector from step 1.
+    
+    outputCor[i] <- cor(x, vector1, method = "pearson")
+  }
+
+  # Return new updated vector, created in step 1
+  return(outputCor)
+}
+
+perm_cor(1000, gap$gdpPercap, gap$lifeExp)
 ```
 
