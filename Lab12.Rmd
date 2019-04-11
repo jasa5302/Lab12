@@ -1,0 +1,51 @@
+---
+title: "Lab 12"
+author: "Adam Hayes, Erin Omyer, Richard Park, Jasmine Sanchez"
+date: "4/11/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(gapminder)
+
+perm_mean <- function(perms = 1000, values, n1)
+{
+  # Create vector of zeroes of length "perms" to store
+  # permuted mean differnces
+  output <- vector("double", perms)
+  
+  # Loop throught number of permutations
+  for (i in c(1:perms))
+  {
+    # Randomly separate vector "values" into disjoint 
+    # groups of size "n1" and "length(values) - n1" respectively
+    
+    vector1 <- sample(values, n1)
+    vector2 <- setdiff(values, vector1)
+
+    # Compute the sample means for the two groups from 
+    # step 2
+    
+    firstMean <- mean(vector1)
+    secondMean <- mean(vector2)
+    
+    # Compute the difference in sample means, store the
+    # value in the vector from step 1
+    
+    meanDifference <- firstMean - secondMean
+    
+    output[i] <- meanDifference
+  }
+  # Return new updated vector, created in step 1
+  
+  return(output)
+}
+perm_mean(1000, gap$lifeExp, 200)
+
+```
+
