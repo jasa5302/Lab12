@@ -123,11 +123,8 @@ quantile(Duration2, c(0.05, 0.95))
 
 ###Findings: 
 The correlation of this graph is significantly lower than the first samle because of the correlation that is shows. The graph suggests that there is a positive, linear correlation between the GDP per Capita of a particular country compared and the life expectancy of that country as well. This is possible due to countries whose citizen's have a higher economic status, they typically have better access to resources and greater access to better healthcare, healthier foods and lifestyles. However, there are other regions, countries, that are generally healthy overall and therefore have a greater life expectancy. This would be the contradiction, lowering the correlation values, to the original correlation. 
-
 ### Conclsuion:
-In the original sample, we have shown that there was a poisitive correlation to the differences in means when comparing life expectancies in a certain number of years to the life expectancies over the total number of years included in the data set. 
- 
-
+In the original sample, we have shown that there was a poisitive correlation to the differences in means when comparing life expectancies in a certain number of years to the life expectancies over the total number of years included in the data set. Also, by looking at the percentiles (we chose to use the 0.05 and 0.95 percentiles) we can see that the labels do not matter in particular primarily because the results fall in between the 0.05 and 0.95 percentiles. For the two sample permutation test, the 0.05 percentile happened to be -2.656596 and the 0.95 percentile was 2.600529. Furthermore, for the correlation permutation test, the 0.05 percentile was determined to be -0.02811812 and the 0.95 percentile was 0.02706006. 
 
 Later, in the second sample, we compared the correlation of life expectancy and how it is affected by greater GDP's per Capita. However, this differs from the correlation values of the orignal sample that we evaluted because the values in this sample are also being decreased by the negative correlations of outlier cases in which the general health of a particular country or region is greater than others. 
 
