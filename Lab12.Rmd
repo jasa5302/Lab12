@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
 
-###Does ignoring the year change the distribution of the mean life expectancy?
+###Does ignoring the year of life expectancy, change the distribution of the mean life expectancy?
 
 
 ```{r}
@@ -26,6 +26,8 @@ mean2002 <- gap %>%
   summarise(mean = mean(lifeExp))
 
 realDiff = mean2002 - mean1952
+
+realDiff
 
 testGroup <- gap %>%
   filter(year == 1952 | year == 2002)
@@ -76,8 +78,11 @@ hist(result, col = "red", main = "Difference of Means")
 
 
 ```
-###Is there a correlation between GDP per capita and Life Expectancy?
 
+###Findings:
+Here, we created our "cut-off" distributions of the difference of means to be between -4 and 4 because of the majoirty of the distribution lies in that range. The results show that there is almost no correlation (or zero correlation) between the difference of means with the overall avereage life expectancy. We noticed that there was a drastic decrease in that correlation when compared to those same distributions, but only for the years 1952 to the year 2000. This dramatic difference shows us that when looking at the correlation for life expectancy and difference of means, we need to take into account the time frame, a.k.a. the year, in order to more clearly identify the causation of the outcome. The reason why our correlation is zero, or so close to, is because we are taking account of the overallavereage life expectancy for ALL years included in the data set and therefore does not provide us with enough detail to come to a consensus. 
+
+### Is there a correlation between GDP per capita and Life Expectancy?
 
 ```{r}
 #Correlation Permutation Test
@@ -112,4 +117,23 @@ hist(results, col = "blue", main = "Correlation" )
 
 
 ```
+
+###Findings: 
+The correlation of this graph is significantly lower than the first samle because of the correlation that is shows. The graph suggests that there is a positive, linear correlation between the GDP per Capita of a particular country compared and the life expectancy of that country as well. This is possible due to countries whose citizen's have a higher economic status, they typically have better access to resources and greater access to better healthcare, healthier foods and lifestyles. However, there are other regions, countries, that are generally healthy overall and therefore have a greater life expectancy. This would be the contradiction, lowering the correlation values, to the original correlation. 
+
+### Conclsuion:
+In the original sample, we have shown that there was a poisitive correlation to the differences in means when comparing life expectancies in a certain number of years to the life expectancies over the total number of years included in the data set. 
+ 
+
+
+Later, in the second sample, we compared the correlation of life expectancy and how it is affected by greater GDP's per Capita. However, this differs from the correlation values of the orignal sample that we evaluted because the values in this sample are also being decreased by the negative correlations of outlier cases in which the general health of a particular country or region is greater than others. 
+
+
+
+
+
+### Who did what: 
+
+
+
 
