@@ -74,7 +74,8 @@ result <- perm_mean(1000, testGroup$lifeExp, 200)
 #realResult <- rnorm(result)
 hist(result, col = "red", main = "Difference of Means")
 
-
+duration = result
+quantile(duration, c(0.05, 0.95))
 
 
 ```
@@ -115,7 +116,9 @@ results <- perm_cor(1000, gap$gdpPercap, gap$lifeExp)
 
 hist(results, col = "blue", main = "Correlation" )
 
-
+Duration2 = results
+quantile(Duration2, c(0.05, 0.95))
+  
 ```
 
 ###Findings: 
