@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
 
-###Does ignoring the year of life expectancy, change the distribution of the mean life expectancy?
+###Does ignoring the year of life expectancy change the distribution of the mean life expectancy?
 
 
 ```{r}
@@ -27,7 +27,6 @@ mean2002 <- gap %>%
 
 realDiff = mean2002 - mean1952
 
-realDiff
 
 testGroup <- gap %>%
   filter(year == 1952 | year == 2002)
@@ -75,9 +74,14 @@ result <- perm_mean(1000, testGroup$lifeExp, 200)
 hist(result, col = "red", main = "Difference of Means")
 
 duration = result
-quantile(duration, c(0.05, 0.95))
-
-
+```
+```{r echo = FALSE, results = 'asis'}
+library(knitr)
+kable(realDiff, caption = "The mean life expectancy")
+```
+```{r echo = FALSE, results = 'asis'}
+library(knitr)
+kable(quantile(duration,c(0.05,0.95)), caption = "The 5th and 95th quantile of the mean life expectancy")
 ```
 
 ###Findings:
@@ -117,8 +121,10 @@ results <- perm_cor(1000, gap$gdpPercap, gap$lifeExp)
 hist(results, col = "blue", main = "Correlation" )
 
 Duration2 = results
-quantile(Duration2, c(0.05, 0.95))
-  
+```
+```{r echo = FALSE, results = 'asis'}
+library(knitr)
+kable(quantile(Duration2,c(0.05,0.95)), caption = "The 5th and 95th quantile between GDP per capita and life expectancy")
 ```
 
 ###Findings: 
@@ -128,12 +134,8 @@ In the original sample, we have shown that there was a poisitive correlation to 
 
 Later, in the second sample, we compared the correlation of life expectancy and how it is affected by greater GDP's per Capita. However, this differs from the correlation values of the orignal sample that we evaluted because the values in this sample are also being decreased by the negative correlations of outlier cases in which the general health of a particular country or region is greater than others. 
 
-
-
-
-
 ### Who did what: 
-
+Overall, each member of our group caries a different talent for data science. In this lab, Adam was able to configure the two functions needed to calculate the difference in mean life expectancy between the years 1952 and 2002, then the correlation between GDP per capita and life expectancy. We were able to do this through incorporating 'for' loops into the function to for them to loop through the number of permutations needed. As well, Adam incorporated the use of vectors in the functions to store the values. Then, Richard used the quantiles to find that the results fall between the 5th and 95th percentile. For the two sample permutation test, it can be stated that it is a normal distribution with the data falling between the 5th and 95th and then dispersing from there. Jasmine and Erin worked together to analyze the data found from the permutation tests. Jasmine ensured the assignment was thoroughly completed. Erin included findings from the data, as well as included organization of the lab assignment as a whole.
 
 
 
