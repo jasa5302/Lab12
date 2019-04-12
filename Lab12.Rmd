@@ -9,11 +9,26 @@ output: html_document
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
 
+###Does ignoring the year change the distribution of the mean life expectancy?
+
+
 ```{r}
 library(tidyverse)
 library(gapminder)
+gap <- gapminder_unfiltered
 
-gap <- gapminder
+mean1952 <- gap %>%
+  filter(year == 1952)%>%
+  summarise(mean = mean(lifeExp))
+
+mean2002 <- gap %>%
+  filter(year == 2002)%>%
+  summarise(mean = mean(lifeExp))
+
+realDiff = mean2002 - mean1952
+
+testGroup <- gap %>%
+  filter(year == 1952 | year == 2002)
 
 #Two-Sample Permutation Test
 
@@ -49,12 +64,19 @@ perm_mean <- function(perms = 1000, values, n1)
   
   return(outputMean)
 }
-perm_mean(1000, gap$lifeExp, 200)
+x <- seq(-4, 4, length=100)
+hx <- dnorm(x)
+
+
+result <- perm_mean(1000, testGroup$lifeExp, 200)
+#realResult <- rnorm(result)
+hist(result, col = "red", main = "Difference of Means")
+
 
 
 
 ```
-###Is there a correlation between GDP per capita and Life Expectancy
+###Is there a correlation between GDP per capita and Life Expectancy?
 
 
 ```{r}
@@ -84,7 +106,10 @@ perm_cor <- function(perms = 1000, x, y)
   # Return new updated vector, created in step 1
   return(outputCor)
 }
+results <- perm_cor(1000, gap$gdpPercap, gap$lifeExp)
 
-plot(perm_cor(1000, gap$gdpPercap, gap$lifeExp), type = "h", ylab = "correlation")
+hist(results, col = "blue", main = "Correlation" )
+
+
 ```
 
